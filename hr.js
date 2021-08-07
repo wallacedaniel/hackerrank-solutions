@@ -1,4 +1,10 @@
 
+// MATH
+
+// Returns a random integer from 0 to 9:
+//Math.floor(Math.random() * 10);
+
+
 // ARRAY METHODS
 
 // .at()
@@ -142,11 +148,32 @@
 
 
 
+// UTILITY
+
+// Generate an array of random numbers between 1 and maxVal
+// let maxVal = 1000;
+// let kQty = 200;
+// let kArray = [];
+//
+// for (let i = 0; i < kQty; i++) {
+//   kArray.push(Math.floor((Math.random() * maxVal) + 1));
+// }
+
+
+
+
+
 
 // 1. understand and re state the problem as succinctly as possible
 // 2. define the edge cases
 // 3. do it on paper
 // 4.
+
+// create a timer ...
+// array generator ...
+
+
+// Given an array of integers, find the longest subarray where absolute difference between any two elements is less than or equal to 1
 
 // sample
 // let a = [1, 1, 2, 2, 4, 4, 5, 5, 5]; //= 5
@@ -155,49 +182,181 @@
 // let a = [1, 1, 1, 1, 1, 1, 3, 4, 3, 4]; // = 6
 
 // edge
-// they could majority single digits
-// they could be unordered
+// could be majority single digits
+// could be unordered
 
-// Given an array of integers, find the longest subarray where absolute difference between any two elements is less than or equal to 1
+// function pickingNumbers(a) {
+//   let uniqueCounts = {};
+//   let uniqueNumbers = [];
+//   let subArrayLengths = [];
+//
+//   // creates an object of  'array item' : count
+//   // and an array of unique digits
+//   for (let i = 0; i < a.length; i++) {
+//       let uniqueNumber = a[i];
+//       if(uniqueCounts[uniqueNumber]){
+//           uniqueCounts[uniqueNumber]++
+//       } else {
+//         uniqueCounts[uniqueNumber] = 1;
+//         uniqueNumbers.push(uniqueNumber);
+//       }
+//   }
+//
+//   // length of single digit subArrays
+//   for (const count in uniqueCounts) {
+//     subArrayLengths.push(uniqueCounts[count]);
+//   }
+//
+//   // length of compared digit subArrays
+//   for(let i = 0; i < uniqueNumbers.length - 1; i++){
+//     for (let j = i + 1; j < uniqueNumbers.length; j++) {
+//       if(Math.abs(uniqueNumbers[i] - uniqueNumbers[j]) <= 1){
+//         let subArrayLength = uniqueCounts[uniqueNumbers[i]] + uniqueCounts[uniqueNumbers[j]];
+//         subArrayLengths.push(subArrayLength);
+//       }
+//     }
+//   }
+//   // max length of subarrays
+//   return Math.max(...subArrayLengths);
+// }
+//
+// let result = pickingNumbers(a);
+//
+// console.log(result);
 
-function pickingNumbers(a) {
-  let uniqueCounts = {};
-  let uniqueNumbers = [];
-  let subArrayLengths = [];
 
-  // creates an object of  'array item' : count
-  // and an array of unique digits
-  for (let i = 0; i < a.length; i++) {
-      let uniqueNumber = a[i];
-      if(uniqueCounts[uniqueNumber]){
-          uniqueCounts[uniqueNumber]++
-      } else {
-        uniqueCounts[uniqueNumber] = 1;
-        uniqueNumbers.push(uniqueNumber);
-      }
+
+//  determine most expensive keyboard and drive that can be purchased within budget. Given price lists for keyboard and drives and a budget, return cost to buy them. If not possible to buy both items, return -1
+
+// sample
+
+// [40, 50, 60], [5, 8, 12], 60); // = 58
+
+  // less than 1k in the key/drive arrays
+  // budget < 10 to the 6th
+  // prices 1 > 10 to the 6th
+
+// 10 2 3
+// 3 1
+// 5 2 8
+//
+// = 9
+
+// 5 1 1
+// 4
+// 5
+
+// = -1
+
+
+// unequal array lengths
+// unordered prices
+
+// function getMoneySpent(keyboards, drives, b) {
+//
+//   // sort ascending
+//   keyboards = keyboards.sort((a, b) => a - b);
+//   drives = drives.sort((a, b) => a - b);
+//
+//   // remove items over budget
+//   for (let i = keyboards.length-1; i>=0; i--) {
+//     if (keyboards[i] >= b) {
+//       keyboards.pop(i);
+//     } else {
+//       break;
+//     }
+//   }
+//
+//   for (let i = drives.length-1; i < i>=0; i--) {
+//     if (drives[i] >= b) {
+//       drives.pop(i);
+//     } else {
+//       break;
+//     }
+//   }
+//
+//   let found;
+//   let maxPrice = -1;
+//
+//   for (let i = 0; i < keyboards.length; i++) {
+//     for (let j = drives.length - 1; j >= 0; j--) {
+//       if (keyboards[i] + drives[j] === b) {
+//           maxPrice = b;
+//           found = true;
+//           break;
+//       }
+//       if (keyboards[i] + drives[j] <= b && keyboards[i] + drives[j] > maxPrice) {
+//           maxPrice = keyboards[i] + drives[j];
+//           break;
+//       }
+//     }
+//     if (found) break;
+//   }
+//   return maxPrice;
+// }
+
+
+function testArray(qty, maxVal){
+  let newArray = [];
+
+  for (let i = 0; i < kQty; i++) {
+    newArray.push(Math.floor((Math.random() * maxVal) + 1));
   }
-
-  // length of single digit subArrays
-  for (const count in uniqueCounts) {
-    subArrayLengths.push(uniqueCounts[count]);
-  }
-
-  // length of compared digit subArrays
-  for(let i = 0; i < uniqueNumbers.length - 1; i++){
-    for (let j = i + 1; j < uniqueNumbers.length; j++) {
-      if(Math.abs(uniqueNumbers[i] - uniqueNumbers[j]) <= 1){
-        let subArrayLength = uniqueCounts[uniqueNumbers[i]] + uniqueCounts[uniqueNumbers[j]];
-        subArrayLengths.push(subArrayLength);
-      }
-    }
-  }
-  // max length of subarrays
-  return Math.max(...subArrayLengths);
+  return newArray;
 }
 
-let result = pickingNumbers(a);
 
-console.log(result);
+let maxVal = 1000;
+let kQty = 30;
+let kArray = [];
+
+for (let i = 0; i < kQty; i++) {
+  kArray.push(Math.floor((Math.random() * maxVal) + 1));
+}
+
+let dQty = 20;
+let dArray = [];
+
+for (let i = 0; i < dQty; i++) {
+  dArray.push(Math.floor((Math.random() * maxVal) + 1));
+}
+
+
+
+
+//https://www.hackerrank.com/challenges/equality-in-a-array/problem
+// Given an array of integers, determine the minimum number of elements to delete to leave only elements of equal value.
+
+// array = [1,2,2,3]
+
+// min deletions
+// leave only a single value
+
+// 2 deletions leaves [2,2]   3 deletions would leave [1] or [3]   both valid results .. 2 is the least
+
+
+let newArray = [1,2,2,3];
+let newArray = testArray();;
+
+function equalizeArray(arr) {
+
+
+}
+
+let results = equalizeArray(testArray);
+console.log(results);
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
