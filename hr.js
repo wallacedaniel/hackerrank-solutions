@@ -150,14 +150,14 @@
 
 // UTILITY
 
-// Generate an array of random numbers between 1 and maxVal
-// let maxVal = 1000;
-// let kQty = 200;
-// let kArray = [];
-//
-// for (let i = 0; i < kQty; i++) {
-//   kArray.push(Math.floor((Math.random() * maxVal) + 1));
-// }
+function testArray(qty, maxVal){
+  let newArray = [];
+
+  for (let i = 0; i < qty; i++) {
+    newArray.push(Math.floor((Math.random() * maxVal) + 1));
+  }
+  return newArray;
+}
 
 
 
@@ -248,6 +248,22 @@
 
 // = -1
 
+//
+// let maxVal = 1000;
+// let kQty = 30;
+// let kArray = [];
+//
+// for (let i = 0; i < kQty; i++) {
+//   kArray.push(Math.floor((Math.random() * maxVal) + 1));
+// }
+//
+// let dQty = 20;
+// let dArray = [];
+//
+// for (let i = 0; i < dQty; i++) {
+//   dArray.push(Math.floor((Math.random() * maxVal) + 1));
+// }
+
 
 // unequal array lengths
 // unordered prices
@@ -296,30 +312,9 @@
 // }
 
 
-function testArray(qty, maxVal){
-  let newArray = [];
-
-  for (let i = 0; i < kQty; i++) {
-    newArray.push(Math.floor((Math.random() * maxVal) + 1));
-  }
-  return newArray;
-}
 
 
-let maxVal = 1000;
-let kQty = 30;
-let kArray = [];
 
-for (let i = 0; i < kQty; i++) {
-  kArray.push(Math.floor((Math.random() * maxVal) + 1));
-}
-
-let dQty = 20;
-let dArray = [];
-
-for (let i = 0; i < dQty; i++) {
-  dArray.push(Math.floor((Math.random() * maxVal) + 1));
-}
 
 
 
@@ -335,15 +330,32 @@ for (let i = 0; i < dQty; i++) {
 // 2 deletions leaves [2,2]   3 deletions would leave [1] or [3]   both valid results .. 2 is the least
 
 
-let newArray = [1,2,2,3];
-let newArray = testArray();;
 
 function equalizeArray(arr) {
 
+  let uniqueCounts = {};
+  let uniqueNumbers = [];
+  let maxCount = 0;
 
+  for (let i = 0; i < arr.length; i++) {
+      let uniqueNumber = arr[i];
+      if(uniqueCounts[uniqueNumber]){
+        uniqueCounts[uniqueNumber]++
+        if (uniqueCounts[uniqueNumber] > maxCount) {
+            maxCount = uniqueCounts[uniqueNumber];
+        }
+      } else {
+        uniqueCounts[uniqueNumber] = 1;
+        uniqueNumbers.push(uniqueNumber);
+      }
+  }
+  return arr.length - maxCount;
 }
 
-let results = equalizeArray(testArray);
+let newArray = [1,2,2,3];
+let input = testArray(100, 10);
+
+let results = equalizeArray(newArray);
 console.log(results);
 
 
