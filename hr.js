@@ -331,47 +331,91 @@ function testArray(qty, maxVal){
 
 
 
-function equalizeArray(arr) {
+// consider an array of only 1 value ...
 
-  let uniqueCounts = {};
-  let uniqueNumbers = [];
-  let maxCount = 0;
+// function equalizeArray(arr) {
+//
+//   let uniqueCounts = {};
+//   let uniqueNumbers = [];
+//   let maxCount = 0;
+//
+//   for (let i = 0; i < arr.length; i++) {
+//       let uniqueNumber = arr[i];
+//       if(uniqueCounts[uniqueNumber]){
+//         uniqueCounts[uniqueNumber]++
+//         if (uniqueCounts[uniqueNumber] > maxCount) {
+//             maxCount = uniqueCounts[uniqueNumber];
+//         }
+//       } else {
+//         uniqueCounts[uniqueNumber] = 1;
+//         uniqueNumbers.push(uniqueNumber);
+//       }
+//   }
+//   return arr.length - maxCount;
+// }
+//
+// let newArray = [1,2,2,3];
+// let input = testArray(100, 10);
+//
+// let results = equalizeArray(newArray);
+// console.log(results);
 
-  for (let i = 0; i < arr.length; i++) {
-      let uniqueNumber = arr[i];
-      if(uniqueCounts[uniqueNumber]){
-        uniqueCounts[uniqueNumber]++
-        if (uniqueCounts[uniqueNumber] > maxCount) {
-            maxCount = uniqueCounts[uniqueNumber];
-        }
-      } else {
-        uniqueCounts[uniqueNumber] = 1;
-        uniqueNumbers.push(uniqueNumber);
-      }
+
+
+
+// https://www.hackerrank.com/challenges/repeated-string/problem
+
+
+
+// string, s, of lowercase English letters - repeated infinitely
+// Given an integer, n, find and print the number of letter a's in the first n letters of the infinite string.
+
+
+
+
+function repeatedString(s, n) {
+
+  let remainder = n % s.length;
+  n = (n - remainder)/s.length;
+
+  let aCount = 0;
+  let remainderCount = 0;
+
+  for (let i = 0; i < s.length; i++) {
+    if (i < remainder) {
+      if (s[i] === 'a') remainderCount++;
+    }
+    if (s[i] === 'a') aCount++;
   }
-  return arr.length - maxCount;
+
+  return aCount * n + remainderCount;
 }
 
-let newArray = [1,2,2,3];
-let input = testArray(100, 10);
+let s = 'a';
+let n = 1000000000000;
 
-let results = equalizeArray(newArray);
+// s could be longer than n
+
+let results = repeatedString(s, n);
 console.log(results);
 
+// 4
 
 
+// s < 100
+// n < 10 ^ 12th
+  // n <+ 10 ^ 6th
+
+// aba
+// 10
+//
+// 7
 
 
-
-
-
-
-
-
-
-
-
-
+// a
+// 1000000000000
+//
+// 1000000000000
 
 
 
