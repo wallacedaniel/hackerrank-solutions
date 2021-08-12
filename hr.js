@@ -373,31 +373,30 @@ function testArray(qty, maxVal){
 
 
 
-function repeatedString(s, n) {
-
-  let remainder = n % s.length;
-  n = (n - remainder)/s.length;
-
-  let aCount = 0;
-  let remainderCount = 0;
-
-  for (let i = 0; i < s.length; i++) {
-    if (i < remainder) {
-      if (s[i] === 'a') remainderCount++;
-    }
-    if (s[i] === 'a') aCount++;
-  }
-
-  return aCount * n + remainderCount;
-}
-
-let s = 'a';
-let n = 1000000000000;
-
-// s could be longer than n
-
-let results = repeatedString(s, n);
-console.log(results);
+// function repeatedString(s, n) {
+//
+//   let remainder = n % s.length;
+//   n = (n - remainder)/s.length;
+//
+//   let aCount = 0;
+//   let remainderCount = 0;
+//
+//   for (let i = 0; i < s.length; i++) {
+//     if (i < remainder) {
+//       if (s[i] === 'a') remainderCount++;
+//     }
+//     if (s[i] === 'a') aCount++;
+//   }
+//
+//   return aCount * n + remainderCount;
+// }
+//
+// let s = 'a';
+// let n = 1000000000000;
+//
+//
+// let results = repeatedString(s, n);
+// console.log(results);
 
 // 4
 
@@ -416,6 +415,75 @@ console.log(results);
 // 1000000000000
 //
 // 1000000000000
+
+
+
+https://www.hackerrank.com/challenges/alternating-characters/problem
+
+// given a string containing characters A and B only
+// change to a string with *** no matching adjacent characters ***
+// allowed to delete zero or more characters
+// find the *** minimum number of required deletions ***
+
+
+//
+// AAAA
+// BBBBB
+// ABABABAB
+// BABABA
+// AAABBB
+//
+// 3
+// 4
+// 0
+// 0
+// 4
+
+function alternatingCharacters(s) {
+
+    let deletions = 0;
+    for (let i = 0; i < s.length-1; i++) {         // what happens at the last indexes
+
+      let alternate = false
+      let pointer = i+1;
+
+      while (!alternate) {
+          if (s[i] !== s[pointer]) {
+            alternate = true;
+
+          } else {
+              deletions+=1;
+              pointer++;
+              i++;
+          }
+      }
+    }
+    return deletions;
+}
+
+let s = 'AAABBB';
+
+let results = alternatingCharacters(s);
+console.log(results);
+
+
+// https://stackoverflow.com/questions/20817618/is-there-a-splice-method-for-strings
+
+
+// It is faster to slice the string twice, like this:
+//
+// function spliceSlice(str, index, count, add) {
+//   // We cannot pass negative indexes directly to the 2nd slicing operation.
+//   if (index < 0) {
+//     index = str.length + index;
+//     if (index < 0) {
+//       index = 0;
+//     }
+//   }
+//
+//   return str.slice(0, index) + (add || "") + str.slice(index + count);
+// }
+
 
 
 
