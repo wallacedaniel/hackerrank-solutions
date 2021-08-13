@@ -1,4 +1,6 @@
 
+//  296243
+
 // MATH
 
 // Returns a random integer from 0 to 9:
@@ -129,6 +131,14 @@
   // determine whether an object has the specified property as a direct property of that object; unlike the in operator, this method does not check for a property in the object's prototype chain
 
 
+// STRING METHODS
+
+// String.fromCharCode();
+// String.prototype.charCodeAt()
+  // returns integer between 0 and 65535 representing the UTF-16 code unit at the given index.
+
+
+
 // LOOPS
 
 // for in -  all enumerable properties of an object that are keyed by strings
@@ -171,6 +181,62 @@ function testArray(qty, maxVal){
 
 // create a timer ...
 // array generator ...
+
+
+
+
+//https://www.hackerrank.com/challenges/the-love-letter-mystery/problem
+//only reduce the value of a letter by 1 - change d to c, but not c to d or d to b.
+//a may not be reduced any further.
+// reduction in the value of any letter is a single operation.
+// return minimum number of operations to convert string into a palindrome.
+
+
+function theLoveLetterMystery(s) {
+
+  let i = 0;
+  let j = s.length - 1;
+  let operations = 0;
+
+  while (i < j){
+
+    let iCharVal = s.charCodeAt(i);
+    let jCharVal = s.charCodeAt(j);
+
+    while (iCharVal !== jCharVal){
+      iCharVal < jCharVal ? jCharVal-- : iCharVal--;
+      operations++;
+    }
+
+    i++;
+    j--;
+  }
+
+  return operations;
+}
+
+
+let s = 'cba';
+//String.fromCharCode(c.charCodeAt(0) - 1);
+let result = theLoveLetterMystery(s);
+
+//abcba
+//abcd
+//cba
+
+// 2
+// 0
+// 4
+// 2
+
+console.log(result);
+
+
+
+
+
+
+
 
 
 // Given an array of integers, find the longest subarray where absolute difference between any two elements is less than or equal to 1
@@ -418,7 +484,7 @@ function testArray(qty, maxVal){
 
 
 
-https://www.hackerrank.com/challenges/alternating-characters/problem
+//https://www.hackerrank.com/challenges/alternating-characters/problem
 
 // given a string containing characters A and B only
 // change to a string with *** no matching adjacent characters ***
@@ -439,32 +505,32 @@ https://www.hackerrank.com/challenges/alternating-characters/problem
 // 0
 // 4
 
-function alternatingCharacters(s) {
-
-    let deletions = 0;
-    for (let i = 0; i < s.length-1; i++) {         // what happens at the last indexes
-
-      let alternate = false
-      let pointer = i+1;
-
-      while (!alternate) {
-          if (s[i] !== s[pointer]) {
-            alternate = true;
-
-          } else {
-              deletions+=1;
-              pointer++;
-              i++;
-          }
-      }
-    }
-    return deletions;
-}
-
-let s = 'AAABBB';
-
-let results = alternatingCharacters(s);
-console.log(results);
+// function alternatingCharacters(s) {
+//
+//     let deletions = 0;
+//     for (let i = 0; i < s.length-1; i++) {
+//
+//       let alternate = false
+//       let pointer = i+1;
+//
+//       while (!alternate) {
+//           if (s[i] !== s[pointer]) {
+//             alternate = true;
+//
+//           } else {
+//               deletions+=1;
+//               pointer++;
+//               i++;
+//           }
+//       }
+//     }
+//     return deletions;
+// }
+//
+// let s = 'AAABBB';
+//
+// let results = alternatingCharacters(s);
+// console.log(results);
 
 
 // https://stackoverflow.com/questions/20817618/is-there-a-splice-method-for-strings
